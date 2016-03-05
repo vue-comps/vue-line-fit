@@ -4,8 +4,8 @@ describe "line-fit", ->
   describe "basic env", ->
 
     before ->
-      env = loadComp(require("../dev/basic.vue"))
+      #env = loadComp(require("../dev/basic.vue"))
     after ->
-      unloadComp(env)
+      #unloadComp(env)
 
     it "should work"
