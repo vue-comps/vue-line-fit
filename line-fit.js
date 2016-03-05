@@ -16,20 +16,22 @@ module.exports = {
   },
   data: function() {
     return {
-      style: {
-        fontSize: null,
-        letterSpacing: null,
+      mainStyle: {
         position: "relative",
         "white-space": "nowrap"
       },
+      style: {
+        fontSize: null,
+        letterSpacing: null
+      },
       calcLetterSpacing: false,
-      done: false,
+      working: true,
       dispose: null
     };
   },
   methods: {
     calc: function() {
-      this.done = false;
+      this.working = true;
       return this.$nextTick((function(_this) {
         return function() {
           var availableHeight, availableWidth, font1, font2, size, style;
@@ -37,7 +39,7 @@ module.exports = {
           availableHeight = _this.$el.clientHeight - parseInt(style.getPropertyValue('padding-top')) - parseInt(style.getPropertyValue('padding-bottom'));
           availableWidth = _this.$el.clientWidth - parseInt(style.getPropertyValue('padding-left')) - parseInt(style.getPropertyValue('padding-right'));
           size = _this.$els.size.getBoundingClientRect();
-          _this.done = true;
+          _this.working = false;
           font1 = 10 * availableHeight / size.height;
           font2 = 10 * availableWidth / size.width;
           _this.style.fontSize = Math.min(font1, font2) + 'px';
@@ -71,4 +73,4 @@ module.exports = {
 };
 
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "<div v-bind:style=style class=line-fit><div v-el:size=v-el:size v-if=!done style=font-size:10px;visibility:hidden;padding:0;position:absolute><slot></slot></div><div v-el:spacing1=v-el:spacing1 v-if=calcLetterSpacing style=letter-spacing:1em;visibility:hidden;padding:0;position:absolute v-bind:style=\"{'font-size':style.fontSize}\"><slot></slot></div><div v-el:spacing2=v-el:spacing2 v-if=calcLetterSpacing style=letter-spacing:2em;visibility:hidden;padding:0;position:absolute v-bind:style=\"{'font-size':style.fontSize}\"><slot></slot></div><div v-if=valign style=position:relative;top:50%;transform:translateY(-50%) class=line-fit-valign><slot></slot></div><div v-else=v-else class=line-fit-result><slot></slot></div></div>"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "<div v-bind:style=mainStyle class=line-fit><div v-el:size=v-el:size v-if=working style=font-size:10px;visibility:hidden;padding:0;position:absolute><slot></slot></div><div v-el:spacing1=v-el:spacing1 v-if=calcLetterSpacing style=letter-spacing:1em;visibility:hidden;padding:0;position:absolute v-bind:style=\"{'font-size':style.fontSize}\"><slot></slot></div><div v-el:spacing2=v-el:spacing2 v-if=calcLetterSpacing style=letter-spacing:2em;visibility:hidden;padding:0;position:absolute v-bind:style=\"{'font-size':style.fontSize}\"><slot></slot></div><div v-if=valign style=position:relative;top:50%;transform:translateY(-50%) v-bind:style=style class=line-fit-valign><slot></slot></div><div v-else=v-else v-bind:style=style class=line-fit-result><slot></slot></div></div>"

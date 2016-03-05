@@ -1,10 +1,10 @@
 // out: ..
 <template lang="jade">
 .line-fit(
-    v-bind:style="style"
+    v-bind:style="mainStyle"
     )
   div(v-el:size
-      v-if="!done"
+      v-if="working"
       style="font-size:10px;visibility:hidden;padding:0;position:absolute"
       )
     slot
@@ -24,9 +24,10 @@
   .line-fit-valign(
       v-if="valign"
       style="position:relative;top:50%;transform:translateY(-50%)"
+      v-bind:style="style"
       )
     slot
-  .line-fit-result(v-else)
+  .line-fit-result(v-else v-bind:style="style")
     slot
 </template>
 
@@ -49,18 +50,20 @@ module.exports =
       default: false
 
   data: ->
+    mainStyle:
+      position:"relative"
+      "white-space":"nowrap"
     style:
       fontSize: null
       letterSpacing: null
-      position:"relative"
-      "white-space":"nowrap"
+
     calcLetterSpacing: false
-    done: false
+    working: true
     dispose: null
 
   methods:
     calc: ->
-      @done = false
+      @working = true
       @$nextTick =>
         # height:
         style = window.getComputedStyle(@$el, null);
@@ -71,7 +74,7 @@ module.exports =
           parseInt(style.getPropertyValue('padding-left')) -
           parseInt(style.getPropertyValue('padding-right'))
         size = @$els.size.getBoundingClientRect()
-        @done = true
+        @working = false
         font1 = 10 * availableHeight / size.height
         font2 = 10 * availableWidth / size.width
         @style.fontSize = Math.min(font1,font2)+'px'
