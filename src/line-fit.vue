@@ -39,7 +39,7 @@ module.exports =
   ]
 
   props:
-    "adapt":
+    "refit":
       type: Boolean
       default: false
     "letterSpacing":
@@ -87,7 +87,7 @@ module.exports =
 
   attached: ->
     @calc()
-    if @adapt
+    if @refit
       @dispose = @onElementResize @$els.main, calc
 
   detached: ->

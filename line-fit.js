@@ -1,7 +1,7 @@
 module.exports = {
   mixins: [require("vue-mixins/onElementResize")],
   props: {
-    "adapt": {
+    "refit": {
       type: Boolean,
       "default": false
     },
@@ -59,7 +59,7 @@ module.exports = {
   },
   attached: function() {
     this.calc();
-    if (this.adapt) {
+    if (this.refit) {
       return this.dispose = this.onElementResize(this.$els.main, calc);
     }
   },
