@@ -2,7 +2,6 @@
 <template lang="jade">
 .line-fit(
     v-bind:style="style"
-    style="position:relative;white-space:nowrap"
     )
   div(v-el:size
       v-if="!done"
@@ -53,6 +52,8 @@ module.exports =
     style:
       fontSize: null
       letterSpacing: null
+      position:"relative"
+      "white-space":"nowrap"
     calcLetterSpacing: false
     done: false
     dispose: null

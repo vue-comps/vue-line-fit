@@ -18,7 +18,9 @@ module.exports = {
     return {
       style: {
         fontSize: null,
-        letterSpacing: null
+        letterSpacing: null,
+        position: "relative",
+        "white-space": "nowrap"
       },
       calcLetterSpacing: false,
       done: false,
@@ -69,4 +71,4 @@ module.exports = {
 };
 
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "<div v-bind:style=style style=position:relative;white-space:nowrap class=line-fit><div v-el:size=v-el:size v-if=!done style=font-size:10px;visibility:hidden;padding:0;position:absolute><slot></slot></div><div v-el:spacing1=v-el:spacing1 v-if=calcLetterSpacing style=letter-spacing:1em;visibility:hidden;padding:0;position:absolute v-bind:style=\"{'font-size':style.fontSize}\"><slot></slot></div><div v-el:spacing2=v-el:spacing2 v-if=calcLetterSpacing style=letter-spacing:2em;visibility:hidden;padding:0;position:absolute v-bind:style=\"{'font-size':style.fontSize}\"><slot></slot></div><div v-if=valign style=position:relative;top:50%;transform:translateY(-50%) class=line-fit-valign><slot></slot></div><div v-else=v-else class=line-fit-result><slot></slot></div></div>"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "<div v-bind:style=style class=line-fit><div v-el:size=v-el:size v-if=!done style=font-size:10px;visibility:hidden;padding:0;position:absolute><slot></slot></div><div v-el:spacing1=v-el:spacing1 v-if=calcLetterSpacing style=letter-spacing:1em;visibility:hidden;padding:0;position:absolute v-bind:style=\"{'font-size':style.fontSize}\"><slot></slot></div><div v-el:spacing2=v-el:spacing2 v-if=calcLetterSpacing style=letter-spacing:2em;visibility:hidden;padding:0;position:absolute v-bind:style=\"{'font-size':style.fontSize}\"><slot></slot></div><div v-if=valign style=position:relative;top:50%;transform:translateY(-50%) class=line-fit-valign><slot></slot></div><div v-else=v-else class=line-fit-result><slot></slot></div></div>"

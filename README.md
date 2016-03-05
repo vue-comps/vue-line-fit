@@ -40,7 +40,7 @@ see `dev/` folder for examples
 Clone repository
 ```sh
 npm install
-npm run watch
+npm run dev
 ```
 Browse to `http://localhost:8080/`
 

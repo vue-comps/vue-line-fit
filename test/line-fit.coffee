@@ -1,4 +1,4 @@
-
+env = null
 describe "line-fit", ->
 
   describe "basic env", ->

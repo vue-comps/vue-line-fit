@@ -1,6 +1,6 @@
 <template lang="jade">
 .container
-  a(href="https://github.com/paulpflug/vue-line-fit/blob/master/dev/basic.vue") source
+  a(href="https://github.com/vue-comps/vue-line-fit/blob/master/dev/basic.vue") source
   p width: 100px; height: 100px
   line-fit(style="width: 100px;height: 100px") Test
   p width: 100px; height: 100px; valing = true
