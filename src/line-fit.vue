@@ -51,7 +51,7 @@ module.exports =
 
   data: ->
     mainStyle:
-      position:"relative"
+      position:null
       "white-space":"nowrap"
     style:
       fontSize: null
@@ -64,10 +64,14 @@ module.exports =
   methods:
     calc: ->
       @working = true
+
       @$nextTick =>
         return unless @$el
         # height:
-        style = window.getComputedStyle(@$el, null);
+        style = window.getComputedStyle(@$el, null)
+        position = style.getPropertyValue("position")
+        if position != "relative" or position != "absolute"
+          @mainStyle.position = "relative"
         availableHeight = @$el.clientHeight -
           parseInt(style.getPropertyValue('padding-top')) -
           parseInt(style.getPropertyValue('padding-bottom'))

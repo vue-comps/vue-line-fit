@@ -17,7 +17,7 @@ module.exports = {
   data: function() {
     return {
       mainStyle: {
-        position: "relative",
+        position: null,
         "white-space": "nowrap"
       },
       style: {
@@ -34,11 +34,15 @@ module.exports = {
       this.working = true;
       return this.$nextTick((function(_this) {
         return function() {
-          var availableHeight, availableWidth, font1, font2, size, style;
+          var availableHeight, availableWidth, font1, font2, position, size, style;
           if (!_this.$el) {
             return;
           }
           style = window.getComputedStyle(_this.$el, null);
+          position = style.getPropertyValue("position");
+          if (position !== "relative" || position !== "absolute") {
+            _this.mainStyle.position = "relative";
+          }
           availableHeight = _this.$el.clientHeight - parseInt(style.getPropertyValue('padding-top')) - parseInt(style.getPropertyValue('padding-bottom'));
           availableWidth = _this.$el.clientWidth - parseInt(style.getPropertyValue('padding-left')) - parseInt(style.getPropertyValue('padding-right'));
           size = _this.$els.size.getBoundingClientRect();
