@@ -8,4 +8,4 @@ describe "line-fit", ->
     #after ->
       #unloadComp(env)
 
-    it "should work"
+    it "should work", ->
