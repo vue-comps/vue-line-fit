@@ -65,6 +65,7 @@ module.exports =
     calc: ->
       @working = true
       @$nextTick =>
+        return unless @$el
         # height:
         style = window.getComputedStyle(@$el, null);
         availableHeight = @$el.clientHeight -
@@ -83,6 +84,7 @@ module.exports =
           @calcLetterSpacing = true
           # width:
           @$nextTick =>
+            return unless @$el
             small = @$els.spacing1.getBoundingClientRect()
             large = @$els.spacing2.getBoundingClientRect()
             b = 2 * small.width - large.width

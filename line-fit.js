@@ -35,6 +35,9 @@ module.exports = {
       return this.$nextTick((function(_this) {
         return function() {
           var availableHeight, availableWidth, font1, font2, size, style;
+          if (!_this.$el) {
+            return;
+          }
           style = window.getComputedStyle(_this.$el, null);
           availableHeight = _this.$el.clientHeight - parseInt(style.getPropertyValue('padding-top')) - parseInt(style.getPropertyValue('padding-bottom'));
           availableWidth = _this.$el.clientWidth - parseInt(style.getPropertyValue('padding-left')) - parseInt(style.getPropertyValue('padding-right'));
@@ -50,6 +53,9 @@ module.exports = {
             _this.calcLetterSpacing = true;
             return _this.$nextTick(function() {
               var b, large, small;
+              if (!_this.$el) {
+                return;
+              }
               small = _this.$els.spacing1.getBoundingClientRect();
               large = _this.$els.spacing2.getBoundingClientRect();
               b = 2 * small.width - large.width;
