@@ -64,7 +64,6 @@ module.exports =
   methods:
     calc: ->
       @working = true
-
       @$nextTick =>
         return unless @$el
         # height:
@@ -78,10 +77,9 @@ module.exports =
         availableWidth = @$el.clientWidth -
           parseInt(style.getPropertyValue('padding-left')) -
           parseInt(style.getPropertyValue('padding-right'))
-        size = @$els.size.getBoundingClientRect()
         @working = false
-        font1 = 10 * availableHeight / size.height
-        font2 = 10 * availableWidth / size.width
+        font1 = 10 * availableHeight / @$els.size.clientHeight
+        font2 = 10 * availableWidth / @$els.size.clientWidth
         @style.fontSize = Math.min(font1,font2)+'px'
         @style.lineHeight = @style.fontSize if @valign
         if @letterSpacing and font1 < font2
@@ -89,16 +87,14 @@ module.exports =
           # width:
           @$nextTick =>
             return unless @$el
-            small = @$els.spacing1.getBoundingClientRect()
-            large = @$els.spacing2.getBoundingClientRect()
-            b = 2 * small.width - large.width
-            @style.letterSpacing = (availableWidth-b) / (small.width-b) + 'em'
+            b = 2 * @$els.spacing1.clientWidth - @$els.spacing2.clientWidth
+            @style.letterSpacing = (availableWidth-b) / (@$els.spacing1.clientWidth-b) + 'em'
             @calcLetterSpacing = false
 
   attached: ->
     @calc()
     if @refit
-      @dispose = @onElementResize @$els.main, calc
+      @dispose = @onElementResize @$el, @calc
 
   detached: ->
     @dispose?()
