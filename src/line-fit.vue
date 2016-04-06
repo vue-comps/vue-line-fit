@@ -1,6 +1,6 @@
 // out: ..
 <template lang="jade">
-.line-fit(
+.vc-line-fit(
     v-bind:style="mainStyle"
     )
   div(v-el:size
@@ -21,13 +21,13 @@
       style="letter-spacing:2em;visibility:hidden;padding:0;position:absolute"
       v-bind:style="{'font-size':style.fontSize}")
     slot
-  .line-fit-valign(
+  .vc-line-fit-valign(
       v-if="valign"
       style="position:relative;top:50%;transform:translateY(-50%)"
       v-bind:style="style"
       )
     slot
-  .line-fit-result(v-else v-bind:style="style")
+  .vc-line-fit-result(v-else v-bind:style="style")
     slot
 </template>
 

@@ -21,7 +21,7 @@ module.exports =
 </script>
 
 <style lang="stylus">
-.line-fit
+.vc-line-fit
   border 1px solid black
 
 .container > a
